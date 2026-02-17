@@ -68,7 +68,7 @@
       // 오히려 연결해놨던 Feker 나 Logitech 에선 제대로 작동했다. 뭐지..??
       // 뭔가 다른 설정과 충돌을 하는듯..? release-after-ms 를 2초로 늘려도 마찬가지.
       // quick-release 를 해주나 안해주나 결과는 같다. 즉, 안된다.
-      skqr: sticky_key_quick_release {
+      skqr: sticky_key_quick_release { // 잘 안됨!
           compatible = "zmk,behavior-sticky-key";
           label = "STICKY_KEY_QUICK_RELEASE";
           #binding-cells = <1>;
@@ -76,6 +76,13 @@
           release-after-ms = <1000>;
           quick-release;
           ignore-modifiers;
+        };
+
+        shcp: shift_capslock {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp LSHFT>, <&kp CAPS>;
         };
 
 
@@ -152,7 +159,7 @@
 &gresc      &kp N1        &kp N2       &kp N3       &kp N4    &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &bs_del
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
 &sk LSHFT   &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
-&kp LSHFT   &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
+&shcp       &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
 &none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
             >;
 
