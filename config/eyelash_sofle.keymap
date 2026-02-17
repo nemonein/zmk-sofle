@@ -60,13 +60,17 @@
             keep-mods = <(MOD_RSFT)>;
         };
 
+      // 이유는 모르겠으나, 이거 잘 안된다.
+      // 이걸 CapsLock 쪽에 넣어놨었는데, Sofle 에선 잘 작동하지 않고,
+      // 오히려 연결해놨던 Feker 에선 제대로 작동했다. 뭐지..??
       skq: sticky_key_quick_release {
           compatible = "zmk,behavior-sticky-key";
           label = "STICKY_KEY_QUICK_RELEASE";
           #binding-cells = <1>;
           bindings = <&kp>;
-          release-after-ms = <1000>;
-          // quick-release;
+          release-after-ms = <2000>;
+          // release-after-ms = <1000>;
+          quick-release;
           // ignore-modifiers;
         };
 

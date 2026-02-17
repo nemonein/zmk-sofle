@@ -3,5 +3,5 @@ zmk/
 modules/
 tools/
 .west/
-Layout/
+Layout/*
 읽어봐.txt
