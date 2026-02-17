@@ -5,7 +5,8 @@
 #define DV 0    // Dvorak Layer
 #define QT 1    // Qwerty Layer
 #define FN 2    // Function Layer
-#define BU 3    // Bluetooth & USB Layer
+#define ETC 3    // ETC Layer
+#define KPD 4    // Keypad Layer
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -85,7 +86,7 @@
             bindings = <&kp LSHFT>, <&kp CAPS>;
         };
 
-        // Caps word: 단어입력할 동안은 Capital lock ON. 이후 특정 키가 입력되면 Caps Lock Off.
+        // Caps word: 영문자/숫자를 입력할 동안은 Capital lock ON. 이후 특정 키가 입력되면 Caps Lock Off.
         cpwd: caps_word {
           compatible = "zmk,behavior-caps-word";
           label = "CAPS_WORD";
@@ -168,7 +169,7 @@
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
 &cpwd       &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
 &shcp       &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
-&none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
+&none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC     &kp RSHFT  &kp DELETE
             >;
 
             // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>; // 이건 아마도 내 거엔 필요 없을 듯?
@@ -181,7 +182,7 @@
 &kp TAB     &kp Q      &kp W         &kp E         &kp R      &kp T        &none     &kp Y      &kp U      &kp I      &kp O      &kp P       &kp BSLH
 &skqr LSHFT &kp A      &kp S         &kp D         &kp F      &kp G        &none     &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp APOS
 &kp LSHFT   &kp Z      &kp X         &kp C         &kp V      &kp B        &none     &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH    &kp ENTER
-&none       &kp LCTRL  &kp LGUI      &kp LALT      &mo FN     &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
+&none       &kp LCTRL  &kp LGUI      &kp LALT      &mo FN     &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC    &kp RSHFT  &kp DELETE
             >;
 
             // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>; // 이건 아마도 내 거엔 필요 없을 듯?
@@ -190,10 +191,10 @@
 
         Function_layer { // Layer 2, FN Layer
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &trans
-&trans      &tog QT          &mkp LCLK       &mkp MCLK        &mkp RCLK        &mkp MB4           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &mkp MB5           &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none      &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12           &trans
+&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
+&trans      &tog QT          &trns           &trns            &trns            &tog KPD           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
+&trans      &kp TILDE        &trans          &trans           &trans           &trns              &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none      &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &trns      &kp F12           &trans
 &none       &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &trans      &trans     &trans
             >;
 
@@ -201,26 +202,26 @@
             // sensor-bindings = <&scroll_encoder>;
         };
 
-        BT_USB_Layer { // Layer 3
+        ETC_Layer { // Layer 3
             bindings = <
 &kp TILDE  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6    &kp F7     &kp F8      &kp F9        &kp F10      &trans
 &trans     &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans    &trans     &kp F11     &kp F12       &kp UNDER    &kp PLUS
 &trans     &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &none    &trans    &trans     &trans      &trans        &kp LBRC     &kp RBRC
 &trans     &sys_reset    &trans          &bootloader   &trans        &trans          &none    &kp INT4  &trans     &sys_reset  &soft_off     &bootloader  &trans
-&trans     &trans        &trans          &trans        &trans        &trans          &none    &trans    &kp LANG1  &trans      &kp LANG2     &kp INT2
+&none      &trans        &trans          &trans        &trans        &trans          &none    &trans    &kp LANG1  &trans      &kp LANG2     &kp INT2
             >;
 
-            display-name = "BT_USB_ETC";
+            display-name = "ETC";
             // sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_3 { // 현재 사용하지 않음.
+        KeyPad_Layer { // Layer 4, Number Keypad Layer
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &trans     &trans     &trans     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &kp KP_N7  &kp KP_N8  &kp KP_N9  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &kp KP_N4  &kp KP_N5  &kp KP_N6  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans     &none    &kp KP_N0  &kp KP_N1  &kp KP_N2  &kp KP_N3  &trans  &trans
+&none   &trans  &trans  &trans  &trans  &trans     &none    &trans     &trans     &trans     &trans     &trans
             >;
 
             display-name = "layer3";
