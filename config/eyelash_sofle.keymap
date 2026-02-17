@@ -35,13 +35,14 @@
 &soft_off { hold-time-ms = <2000>; };
 
 / {
-    scroll_encoder: scroll_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-
-        tap-ms = <100>;
-    };
+    // 이건 나한테 없다. 돌리는 거..
+    // scroll_encoder: scroll_encoder {
+    //     compatible = "zmk,behavior-sensor-rotate";
+    //     #sensor-binding-cells = <0>;
+    //     bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+    //
+    //     tap-ms = <100>;
+    // };
 
     behaviors {
       gresc: grave_escape { // 구글에서 찾음. 그냥 누르면 ESC; Shift+ESC:`(Grave)
@@ -50,6 +51,7 @@
             bindings = <&kp ESC>, <&kp GRAVE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
+
       bs_del: backspace_delete { // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/mod-morph
                                    // 그냥 BS; LSHFT+BS:Del; RSHFT+BS: RSHFT + Del.
                                    // mac 이 이런 방식이지 않나..?
@@ -61,15 +63,17 @@
         };
 
       // 이유는 모르겠으나, 이거 잘 안된다.
-      // 이걸 CapsLock 쪽에 넣어놨었는데, Sofle 에선 잘 작동하지 않고,
-      // 오히려 연결해놨던 Feker 에선 제대로 작동했다. 뭐지..??
+      // 이걸 CapsLock 쪽에 넣어놨었는데, Sofle 에선 잘 작동하지 않는다.
+      // 딱 첫글자에만 작동한다.
+      // 오히려 연결해놨던 Feker 나 Logitech 에선 제대로 작동했다. 뭐지..??
+      // 뭔가 다른 설정과 충돌을 하는듯..? release-after-ms 를 2초로 늘려도 마찬가지.
+      // quick-release 를 해주나 안해주나 결과는 같다. 즉, 안된다.
       skq: sticky_key_quick_release {
           compatible = "zmk,behavior-sticky-key";
           label = "STICKY_KEY_QUICK_RELEASE";
           #binding-cells = <1>;
           bindings = <&kp>;
-          release-after-ms = <2000>;
-          // release-after-ms = <1000>;
+          release-after-ms = <1000>;
           quick-release;
           // ignore-modifiers;
         };
@@ -91,26 +95,29 @@
 
         softoff {
             bindings = <&soft_off>;
-            key-positions = <14 28 40>;
+            key-positions = <14 28 40>;   // Q S Z 동시에 누르면 Soft Off 진입.
         };
     };
 
     macros {
-        SHIFT_MCLK: SHIFT_MCLK {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings =
-                <&macro_press>,
-                <&kp LEFT_SHIFT>,
-                <&macro_press>,
-                <&mkp MB3>,
-                <&macro_pause_for_release>,
-                <&macro_release>,
-                <&kp LEFT_SHIFT &mkp MB3>;
+      // 정확히는 모르겠으나, Shift + 마우스 가운데클릭인 듯.. 정의만 돼 있고 쓰이진 않았다.
+        // SHIFT_MCLK: SHIFT_MCLK {
+        //     compatible = "zmk,behavior-macro";
+        //     #binding-cells = <0>;
+        //     bindings =
+        //         <&macro_press>,
+        //         <&kp LEFT_SHIFT>,
+        //         <&macro_press>,
+        //         <&mkp MB3>,
+        //         <&macro_pause_for_release>,
+        //         <&macro_release>,
+        //         <&kp LEFT_SHIFT &mkp MB3>;
+        //
+        //     label = "SHIFT_MCLK";
+        // };
 
-            label = "SHIFT_MCLK";
-        };
-        // QMK lm 명령 구현. (이게 안되냐..?)
+
+        // QMK lm 명령 구현. (이게 기본 지원이 안되냐..?)
         // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/macros#layer-activation--more
         // 쓰기는 하겠지만, 코드를 이해하진 못하겠네.
         // 사용: %lm QT LCTRL
@@ -132,9 +139,6 @@
                 ;
         };
 
-// #define LCDQ &lm QT LCTL
-// #define LSDQ &lm QT LEFT_GUI
-// #define LADQ &lm QT LEFT_ALT
 
     };
     // Layer 는 아래에 표기된 순서대로 번호가 매겨진다. 차례대로 Layer 0, Layer 1, Layer 2 ... 순.
@@ -147,7 +151,7 @@
             bindings = <
 &gresc      &kp N1        &kp N2       &kp N3       &kp N4    &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &bs_del
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
-&skq LSHFT   &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
+&skq RSHFT   &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
 &kp LSHFT   &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
 &none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
             >;
@@ -160,7 +164,7 @@
             bindings = <
 &kp ESC     &kp N1     &kp N2        &kp N3        &kp N4     &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &kp BACKSPACE
 &kp TAB     &kp Q      &kp W         &kp E         &kp R      &kp T        &none     &kp Y      &kp U      &kp I      &kp O      &kp P       &kp BSLH
-&skq LSHFT    &kp A      &kp S         &kp D         &kp F      &kp G        &none     &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp APOS
+&skq RSHFT    &kp A      &kp S         &kp D         &kp F      &kp G        &none     &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp APOS
 &kp LSHFT   &kp Z      &kp X         &kp C         &kp V      &kp B        &none     &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH    &kp ENTER
 &none       &kp LCTRL  &kp LGUI      &kp LALT      &mo FN     &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
             >;
