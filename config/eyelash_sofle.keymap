@@ -192,9 +192,9 @@
         Function_layer { // Layer 2, FN Layer
             bindings = <
 &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
-&trans      &tog QT          &trns           &trns            &trns            &tog KPD           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
-&trans      &kp TILDE        &trans          &trans           &trans           &trns              &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none      &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &trns      &kp F12           &trans
+&trans      &tog QT          &trans          &trans           &trans           &tog KPD           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
+&trans      &kp TILDE        &trans          &trans           &trans           &trans             &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none      &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &trans     &kp F12           &trans
 &none       &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &trans      &trans     &trans
             >;
 
