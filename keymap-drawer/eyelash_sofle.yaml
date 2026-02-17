@@ -149,7 +149,7 @@ layers:
   - '&trns'
   - '&trns'
   - '&trns'
-  - {t: layer3, h: toggle}
+  - {t: Keypad, h: toggle}
   - {t: '$$mdi:minus-circle-outline$$', type: none}
   - PG UP
   - HOME
@@ -260,7 +260,7 @@ layers:
   - {type: held}
   - LANG2
   - INT2
-  layer3:
+  Keypad:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
