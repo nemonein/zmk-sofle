@@ -44,20 +44,29 @@
     };
 
     behaviors {
-      gresc: grave_escape { // 구글에서 찾음. 그냥 누르면 ESC, Shift+ESC:`(Grave)
-                            // Mod-Morph 사용.
+      gresc: grave_escape { // 구글에서 찾음. 그냥 누르면 ESC; Shift+ESC:`(Grave)
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp ESC>, <&kp GRAVE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
         };
       bs_del: backspace_delete { // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/mod-morph
-                                   // 그냥 BS, LSHFT+BS:Del, RSHFT+BS: 그대로.
+                                   // 그냥 BS; LSHFT+BS:Del; RSHFT+BS: RSHFT + Del.
+                                   // mac 이 이런 방식이지 않나..?
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
             bindings = <&kp BACKSPACE>, <&kp DELETE>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
             keep-mods = <(MOD_RSFT)>;
+        };
+
+        skq: sticky_key_quick_release {
+          compatible = "zmk,behavior-sticky-key";
+          #binding-cells = <1>;
+          bindings = <&kp>;
+          release-after-ms = <1000>;
+          quick-release;
+          ignore-modifiers;
         };
 
 
@@ -97,7 +106,9 @@
             label = "SHIFT_MCLK";
         };
         // QMK lm 명령 구현. (이게 안되냐..?)
-        // 구글 AI 로 찾았다.
+        // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/macros#layer-activation--more
+        // 쓰기는 하겠지만, 코드를 이해하진 못하겠네.
+        // 사용: %lm QT LCTRL
         lm: layer_modifier {
             compatible = "zmk,behavior-macro-two-param";
             wait-ms = <0>;
@@ -131,7 +142,7 @@
             bindings = <
 &gresc      &kp N1        &kp N2       &kp N3       &kp N4    &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &bs_del
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
-&kp CAPS    &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
+&stq        &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
 &kp LSHFT   &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
 &none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
             >;
