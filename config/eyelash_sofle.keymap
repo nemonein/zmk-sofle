@@ -78,11 +78,19 @@
           ignore-modifiers;
         };
 
-        shcp: shift_capslock {
+        shcp: shift_capslock { // 한번 shift, 두번은 CapsLock. 0.2sec 이므로 상당히 빠르게 눌러야 한다.
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp LSHFT>, <&kp CAPS>;
+        };
+
+        // Caps word: 단어입력할 동안은 Capital lock ON. 이후 특정 키가 입력되면 Caps Lock Off.
+        cpwd: caps_word {
+          compatible = "zmk,behavior-caps-word";
+          label = "CAPS_WORD";
+          #binding-cells = <0>;
+          continu_list = <UNDERSCORE MINUS>; // 이 키들은 Caps-Word 를 깨뜨리지 않음.
         };
 
 
@@ -158,7 +166,7 @@
             bindings = <
 &gresc      &kp N1        &kp N2       &kp N3       &kp N4    &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &bs_del
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
-&sk LSHFT   &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
+&cpwd       &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
 &shcp       &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
 &none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo BU     &kp RSHFT  &kp DELETE
             >;
