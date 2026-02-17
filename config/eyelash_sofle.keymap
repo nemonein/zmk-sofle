@@ -35,7 +35,7 @@
 &soft_off { hold-time-ms = <2000>; };
 
 / {
-    // 이건 나한테 없다. 돌리는 거..
+    // 이건 나한테 없는듯? msc 는 마우스 스크롤을 말하는 건데..?
     // scroll_encoder: scroll_encoder {
     //     compatible = "zmk,behavior-sensor-rotate";
     //     #sensor-binding-cells = <0>;
@@ -183,7 +183,7 @@
             >;
 
             display-name = "Function";
-            sensor-bindings = <&scroll_encoder>;
+            // sensor-bindings = <&scroll_encoder>;
         };
 
         BT_USB_Layer { // Layer 3
@@ -196,7 +196,7 @@
             >;
 
             display-name = "BT_USB_ETC";
-            sensor-bindings = <&scroll_encoder>;
+            // sensor-bindings = <&scroll_encoder>;
         };
 
         layer_3 { // 현재 사용하지 않음.
@@ -209,7 +209,7 @@
             >;
 
             display-name = "layer3";
-            sensor-bindings = <&scroll_encoder>;
+            // sensor-bindings = <&scroll_encoder>;
         };
 
         layer_4 {
@@ -222,7 +222,7 @@
             >;
 
             display-name = "layer4";
-            sensor-bindings = <&scroll_encoder>;
+            // sensor-bindings = <&scroll_encoder>;
         };
     };
 };
