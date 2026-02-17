@@ -90,7 +90,7 @@
           compatible = "zmk,behavior-caps-word";
           label = "CAPS_WORD";
           #binding-cells = <0>;
-          continu_list = <UNDERSCORE MINUS>; // 이 키들은 Caps-Word 를 깨뜨리지 않음.
+          continue-list = <UNDERSCORE MINUS>; // 이 키들은 Caps-Word 를 깨뜨리지 않음.
         };
 
 
