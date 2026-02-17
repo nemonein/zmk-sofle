@@ -27,7 +27,7 @@ layers:
   - R
   - L
   - {t: \, s: '|'}
-  - $$mdi:apple-keyboard-caps$$
+  - '&stq'
   - A
   - O
   - E
