@@ -204,10 +204,10 @@
 
         ETC_Layer { // Layer 3
             bindings = <
-&bootloader  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6    &kp F7     &kp F8      &kp F9        &kp F10      &trans
-&sys_reset   &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans    &trans     &kp F11     &kp F12       &kp UNDER    &kp PLUS
-&trans       &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &none    &trans    &trans     &trans      &trans        &kp LBRC     &kp RBRC
-&trans       &trans        &trans          &trans        &trans        &trans          &none    &kp INT4  &trans     &sys_reset  &soft_off     &bootloader  &trans
+&bootloader  &bt BT_SEL 0  &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6    &kp F7     &kp F8      &kp LBRC      &kp RBRC     &bootloader
+&sys_reset   &bt BT_CLR    &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans    &trans     &kp F11     &kp F12       &kp UNDER    &sys_reset
+&soft_off    &out OUT_USB  &out OUT_BLE    &trans        &trans        &trans          &none    &trans    &trans     &trans      &trans        &kp LBRC     &soft_off
+&trans       &trans        &trans          &trans        &trans        &trans          &none    &kp INT4  &trans     &trans      &trans        &trans       &trans
 &none        &trans        &trans          &trans        &trans        &trans          &none    &trans    &kp LANG1  &trans      &kp LANG2     &kp INT2
             >;
 
@@ -217,11 +217,11 @@
 
         KeyPad_Layer { // Layer 4, Number Keypad Layer
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &trans     &trans     &trans     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &kp KP_N7  &kp KP_N8  &kp KP_N9  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans     &none    &trans     &kp KP_N4  &kp KP_N5  &kp KP_N6  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans     &none    &kp KP_N0  &kp KP_N1  &kp KP_N2  &kp KP_N3  &trans  &trans
-&none   &trans  &trans  &trans  &trans  &trans     &none    &trans     &trans     &trans     &trans     &trans
+&trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &kp KP_MULTIPLY  &kp KP_DIVIDE
+&trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
+&trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_DOT           &trans
+&trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &trans
+&none   &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &trans
             >;
 
             display-name = "Keypad";
