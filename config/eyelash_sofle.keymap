@@ -194,21 +194,22 @@
 &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
 &trans      &tog QT          &trans          &trans           &trans           &tog KPD           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
 &trans      &kp TILDE        &trans          &trans           &trans           &trans             &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI    &none      &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &trans     &kp F12           &trans
+&trans      &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &kp INSERT  &kp PSCRN  &kp F12           &trans
 &none       &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &trans      &trans     &trans
             >;
 
             display-name = "Function";
             // sensor-bindings = <&scroll_encoder>;
         };
-
+        // &bootloader/&sys_reset/&soft_off 등은 오른쪽에선 잘 작동하지 않는다. 따라서 굳이 넣어놓을 필요가 없다.
+        // 처음엔 오른쪽 끝 키들에 배열했었다.
         ETC_Layer { // Layer 3
             bindings = <
-&bootloader  &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6    &kp F7     &kp F8      &kp LBRC      &kp RBRC     &bootloader
-&sys_reset   &bt BT_CLR     &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans    &trans     &kp F11     &kp F12       &kp UNDER    &sys_reset
-&soft_off    &out OUT_USB   &out OUT_BLE    &trans        &trans        &trans          &none    &trans    &trans     &trans      &trans        &kp LBRC     &soft_off
-&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &kp INT4  &trans     &trans      &trans        &trans       &trans
-&none        &trans         &trans          &trans        &trans        &trans          &none    &trans    &kp LANG1  &trans      &kp LANG2     &kp INT2
+&bootloader  &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6           &kp F7           &kp F8           &kp LBRC         &kp RBRC         &trans
+&sys_reset   &bt BT_CLR     &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans           &trans           &kp F11          &kp F12          &kp UNDER        &rgb_ug RGB_BRI
+&soft_off    &out OUT_USB   &out OUT_BLE    &trans        &trans        &trans          &none    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_SPD  &rgb_ug RGB_SPD
+&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &kp INT4         &trans           &trans           &trans           &trans           &trans
+&none        &trans         &trans          &trans        &trans        &trans          &none    &trans           &kp LANG1        &trans           &kp LANG2        &kp INT2
             >;
 
             display-name = "ETC";
