@@ -16,7 +16,6 @@
 #include <dt-bindings/zmk/outputs.h>
 // #include <dt-bindings/zmk/pointing.h>  // 마우스 기능 흉내낼 때 사용.
 #include <dt-bindings/zmk/rgb.h>
-
 // backlight 가 정확히 뭘하는 건진 모르겠는데, 이걸 켜면 Display 가 안보이게 된다.
 // 키보드에 불이 들어오진 않는다.
 //#include <dt-bindings/zmk/backlight.h>
@@ -160,6 +159,14 @@
         };
 
 
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        try_layers {
+          if-layers = <2 3>;
+          then-layer = <4>;
+        };
     };
     // Layer 는 아래에 표기된 순서대로 번호가 매겨진다. 차례대로 Layer 0, Layer 1, Layer 2 ... 순.
     // &trans : 하위 레이어의 그 자리를 그대로.
