@@ -227,7 +227,7 @@
 &sys_reset   &bt BT_CLR     &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans           &trans           &kp F11          &kp F12          &kp UNDER        &rgb_ug RGB_BRI
 &soft_off    &out OUT_USB   &out OUT_BLE    &trans        &trans        &trans          &none    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_SPD  &rgb_ug RGB_BRD
 &trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &kp INT4         &trans           &trans           &trans           &trans           &trans
-&none        &trans         &trans          &trans        &trans        &kp INT         &none    &trans           &kp LANG1        &trans           &kp LANG2        &kp INT2
+&none        &trans         &trans          &trans        &trans        &kp INT4        &none    &trans           &kp LANG1        &trans           &kp LANG2        &kp INT2
             >;
 
             display-name = "ETC";
