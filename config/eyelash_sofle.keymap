@@ -90,12 +90,12 @@
           ignore-modifiers;
         };
 
-      shcp: shift_capslock { // 한번 shift, 두번은 CapsLock. 0.2sec 이므로 상당히 빠르게 눌러야 한다.
-          compatible = "zmk,behavior-tap-dance";
-          #binding-cells = <0>;
-          tapping-term-ms = <200>;
-          bindings = <&kp LSHFT>, <&kp CAPS>;
-        };
+      // shcp: shift_capslock { // 한번 shift, 두번은 CapsLock. 0.2sec 이므로 상당히 빠르게 눌러야 한다.
+      //     compatible = "zmk,behavior-tap-dance";
+      //     #binding-cells = <0>;
+      //     tapping-term-ms = <200>;
+      //     bindings = <&kp LSHFT>, <&kp CAPS>;
+      //   };
 
         // Caps word: 영문자/숫자를 입력할 동안은 Capital lock ON. 이후 특정 키가 입력되면 Caps Lock Off.
       cpwd: caps_word {
@@ -155,14 +155,14 @@
               ;
       };
 
-      han_eng: hangul_english_change {
-          compatible = "zmk, behavior-macro";
-          #binding-cells = <0>;
-          bindings = <&kp &tog QT >,
-            // 그리고 상황에 따라 한영키, 영문키를 달리 내보내야 하는데.. 이건 그게 안될 듯..?
-                     //< >;
-
-      };
+      // han_eng: hangul_english_change {
+      //     compatible = "zmk, behavior-macro";
+      //     #binding-cells = <0>;
+      //     bindings = <&kp &tog QT >,
+      //       // 그리고 상황에 따라 한영키, 영문키를 달리 내보내야 하는데.. 이건 그게 안될 듯..?
+      //                //< >;
+      //
+      // };
 
 
 
