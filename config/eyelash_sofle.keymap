@@ -1,5 +1,5 @@
 // 26.03.03
-// 일단, M1+SPC(韓), M2+SPC(英) 로 한영전환은 되게끔 만들어놨다.
+// 일단, M1+SPC(韓), M2+SPC(英) 로 전환되게끔 만들어놨다.
 // 키감을 극복하느냐가 관건.
 // 자세한 사항은 Obsidian 'Hardware/ZMK 한영(韓英) 전환 방식' 을 읽어봐.
 
@@ -256,7 +256,7 @@
             // sensor-bindings = <&scroll_encoder>;
         };
 
-        layer_4 {
+        /* layer_4 {
             bindings = <
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans  &trans
@@ -267,7 +267,7 @@
 
             display-name = "layer4";
             // sensor-bindings = <&scroll_encoder>;
-        };
+        }; */
     };
 };
 
