@@ -177,13 +177,15 @@
 
     };
 
+    /* // 이게 되면, 일반 방법(&to, &tog 등)으로는 전환이 안된다.
     conditional_layers { // 그냥 연습용으로 만들어봤음. Fn/ETC 레이어가 동시에 켜지면, Keypad 가 활성화된다. 물론, 누르고 있는 동안만.
         compatible = "zmk,conditional-layers";
         try_layers {
           if-layers = <2 3>;
           then-layer = <4>;
         };
-    };
+    }; */
+
     // Layer 는 아래에 표기된 순서대로 번호가 매겨진다. 차례대로 Layer 0, Layer 1, Layer 2 ... 순.
     // &trans : 하위 레이어의 그 자리를 그대로.
     // &none  : 키 무시.
@@ -219,7 +221,7 @@
         Function_layer { // Layer 2, FN Layer
             bindings = <
 &kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
-&kp TILDE   &tog QT          &to KPD         &trans           &trans           &trans             &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
+&kp TILDE   &tog QT          &tog KPD        &trans           &trans           &trans             &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
 &trans      &trans           &trans          &trans           &trans           &trans             &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
 &trans      &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &kp INSERT  &kp PSCRN  &kp F12           &trans
 &none       &trans           &trans          &trans           &trans           &trans             &none      &eng_han         &trans           &trans      &trans     &trans
