@@ -166,7 +166,7 @@
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
           tap-ms = <10>; // 키를 연달아 보낼 땐 tap-ms 가 꼭 있어야 하는 듯.. 없으면 오류발생.
-          bindings = <&to QT>, <&kp LANG1>
+          bindings = <&to QT>, <&kp LANG1>;
       };
 
     };
