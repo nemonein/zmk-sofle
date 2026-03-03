@@ -158,7 +158,7 @@
       han_eng: hangul_english_change { // 한글에서 영문으로.
           compatible = "zmk, behavior-macro";
           #binding-cells = <0>;
-          bindings = <&to DV>, &kp <INT4>;
+          bindings = <&to DV>, <&kp INT4>;
       };
 
 
