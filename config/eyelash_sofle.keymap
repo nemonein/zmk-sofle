@@ -158,11 +158,16 @@
       han_eng: hangul_english_change { // 한글에서 영문으로.
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          tap-ms = <10>;
+          tap-ms = <10>; // 키를 연달아 보낼 땐 tap-ms 가 꼭 있어야 하는 듯.. 없으면 오류발생.
           bindings = <&to DV>, <&kp INT4>;
       };
 
-
+      eng_han: english_hangul_change { // 한글에서 영문으로.
+          compatible = "zmk,behavior-macro";
+          #binding-cells = <0>;
+          tap-ms = <10>; // 키를 연달아 보낼 땐 tap-ms 가 꼭 있어야 하는 듯.. 없으면 오류발생.
+          bindings = <&to QT>, <&kp LANG1>
+      };
 
     };
 
@@ -211,7 +216,7 @@
 &trans      &tog QT          &trans          &trans           &trans           &tog KPD           &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
 &trans      &kp TILDE        &trans          &trans           &trans           &trans             &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
 &trans      &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &kp INSERT  &kp PSCRN  &kp F12           &trans
-&none       &trans           &trans          &trans           &trans           &trans             &none      &kp LANG1        &trans           &trans      &trans     &trans
+&none       &trans           &trans          &trans           &trans           &trans             &none      &eng_han         &trans           &trans      &trans     &trans
             >;
 
             display-name = "Function";
@@ -224,8 +229,8 @@
 &bootloader  &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6           &kp F7           &kp F8           &kp LBRC         &kp RBRC         &trans
 &sys_reset   &bt BT_CLR     &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans           &trans           &kp F11          &kp F12          &kp UNDER        &rgb_ug RGB_BRI
 &soft_off    &out OUT_USB   &out OUT_BLE    &trans        &trans        &trans          &none    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_SPD  &rgb_ug RGB_BRD
-&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &han_eng         &trans           &trans           &trans           &trans           &trans
-&none        &trans         &trans          &trans        &trans        &kp INT4        &none    &trans           &kp LANG1        &trans           &kp LANG2        &kp INT2
+&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &kt INT4         &kp LANG1        &trans           &trans           &trans           &trans
+&none        &trans         &trans          &trans        &trans        &han_eng        &none    &trans           &eng_han         &trans           &kp LANG2        &kp INT2
             >;
 
             display-name = "ETC";
