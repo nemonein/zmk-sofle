@@ -155,14 +155,11 @@
               ;
       };
 
-      // han_eng: hangul_english_change {
-      //     compatible = "zmk, behavior-macro";
-      //     #binding-cells = <0>;
-      //     bindings = <&kp &tog QT >,
-      //       // 그리고 상황에 따라 한영키, 영문키를 달리 내보내야 하는데.. 이건 그게 안될 듯..?
-      //                //< >;
-      //
-      // };
+      han_eng: hangul_english_change { // 한글에서 영문으로.
+          compatible = "zmk, behavior-macro";
+          #binding-cells = <0>;
+          bindings = <&to DV>, &kp <INT4>;
+      };
 
 
 
@@ -226,7 +223,7 @@
 &bootloader  &bt BT_SEL 0   &bt BT_SEL 1    &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &none    &kp F6           &kp F7           &kp F8           &kp LBRC         &kp RBRC         &trans
 &sys_reset   &bt BT_CLR     &bt BT_CLR_ALL  &trans        &trans        &trans          &none    &trans           &trans           &kp F11          &kp F12          &kp UNDER        &rgb_ug RGB_BRI
 &soft_off    &out OUT_USB   &out OUT_BLE    &trans        &trans        &trans          &none    &rgb_ug RGB_TOG  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &rgb_ug RGB_SPI  &rgb_ug RGB_SPD  &rgb_ug RGB_BRD
-&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &kp INT4         &trans           &trans           &trans           &trans           &trans
+&trans       &bt BT_DISC 0  &trans          &trans        &trans        &trans          &none    &han_eng         &trans           &trans           &trans           &trans           &trans
 &none        &trans         &trans          &trans        &trans        &kp INT4        &none    &trans           &kp LANG1        &trans           &kp LANG2        &kp INT2
             >;
 
