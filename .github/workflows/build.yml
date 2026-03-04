@@ -8,4 +8,7 @@ on:
 jobs:
   build:
     # uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # 2026.03.03 까진 위로 작동했었는데, 4일부터 오류가 났다.
+    # Reddit 에 문의했더니, 뒤에 저렇게 붙이라고 했고, 오류는 가버렸다.
+    # https://zmk.dev/blog/2025/06/20/pinned-zmk#github-action
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3
