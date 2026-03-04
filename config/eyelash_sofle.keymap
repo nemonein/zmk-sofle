@@ -3,9 +3,35 @@
 // 키감을 극복하느냐가 관건.
 // 자세한 사항은 Obsidian 'Hardware/ZMK 한영(韓英) 전환 방식' 을 읽어봐.
 
+// 26.03.04 이유는 모르겠으나, github 에서 빌드가 안된다.
+// 내 코드 문제는 아닌 듯 한데..?
+/*
+Run if ! (grep "CONFIG_ZMK_BOARD_COMPAT=y" "/tmp/tmp.cuGObymLvT/zephyr/.config" > /dev/null)
+Traceback (most recent call last):
+  File "/usr/local/bin/west", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/usr/local/lib/python3.12/dist-packages/west/app/main.py", line 1199, in main
+    app.run(argv or sys.argv[1:])
+  File "/usr/local/lib/python3.12/dist-packages/west/app/main.py", line 278, in run
+    self.run_command(argv, early_args)
+  File "/usr/local/lib/python3.12/dist-packages/west/app/main.py", line 584, in run_command
+    self.run_extension(args.command, argv)
+  File "/usr/local/lib/python3.12/dist-packages/west/app/main.py", line 739, in run_extension
+    self.cmd.run(args, unknown, self.topdir, manifest=self.manifest,
+  File "/usr/local/lib/python3.12/dist-packages/west/commands.py", line 200, in run
+    self.do_run(args, unknown)
+  File "/tmp/zmk-config/zephyr/scripts/west_commands/boards.py", line 87, in do_run
+    log.inf(args.format.format(name=board.name, arch=board.arch,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyError: 'qualifiers'
+Error: Process completed with exit code 1.
+*/
 
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+
+// 아래도 마우스 관련 설정.
+// #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
+// #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 
 // Layer 이름 정의
 #define DV 0    // Dvorak Layer
@@ -141,7 +167,7 @@
 
         // QMK lm 명령 구현. (이게 기본 지원이 안되냐..?)
         // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/macros#layer-activation--more
-        // 쓰기는 하겠지만, 코드를 이해하진 못하겠네.
+        // 쓰기는 하겠지만, 코드를 이해하진 못하겠네. --> 이제 이해된다. Obsidian, 아래 항목을 봐.
         // 사용: %lm QT LCTRL
       lm: layer_modifier {
           compatible = "zmk,behavior-macro-two-param";
@@ -198,7 +224,7 @@
 &kp TAB     &kp APOS      &kp COMMA    &kp DOT      &kp P     &kp Y        &none     &kp F      &kp G      &kp C      &kp R      &kp L       &kp BSLH
 &cpwd       &kp A         &kp O        &kp E        &kp U     &kp I        &none     &kp D      &kp H      &kp T      &kp N      &kp S       &kp MINUS
 &shcp       &kp SEMI      &kp Q        &kp J        &kp K     &kp X        &none     &kp B      &kp M      &kp W      &kp V      &kp Z       &kp RSHFT
-&none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC     &kp RSHFT  &kp DEL
+&none       &lm QT LCTRL  &lm QT LGUI  &lm QT LALT  &mo FN    &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC    &kp RSHFT  &kp DEL
             >;
 
             // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>; // 이건 아마도 내 거엔 필요 없을 듯?
@@ -207,11 +233,11 @@
 
         Qwerty_layer { // Layer 1, QT Layer
             bindings = <
-&kp ESC     &kp N1     &kp N2        &kp N3        &kp N4     &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &kp BACKSPACE
+&kp ESC     &kp N1     &kp N2        &kp N3        &kp N4     &kp N5       &none     &kp N6     &kp N7     &kp N8     &kp N9     &kp N0      &bs_del
 &kp TAB     &kp Q      &kp W         &kp E         &kp R      &kp T        &none     &kp Y      &kp U      &kp I      &kp O      &kp P       &kp BSLH
 &skqr LSHFT &kp A      &kp S         &kp D         &kp F      &kp G        &none     &kp H      &kp J      &kp K      &kp L      &kp SEMI    &kp APOS
 &kp LSHFT   &kp Z      &kp X         &kp C         &kp V      &kp B        &none     &kp N      &kp M      &kp COMMA  &kp DOT    &kp FSLH    &kp ENTER
-&none       &kp LCTRL  &kp LGUI      &kp LALT      &mo FN     &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC    &kp RSHFT  &kp DELETE
+&none       &kp LCTRL  &kp LGUI      &kp LALT      &mo FN     &kp SPACE    &none     &kp SPACE  &kp ENTER  &mo ETC    &kp RSHFT  &kp DEL
             >;
 
             // sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOL_DN>; // 이건 아마도 내 거엔 필요 없을 듯?
@@ -220,11 +246,11 @@
 
         Function_layer { // Layer 2, FN Layer
             bindings = <
-&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5             &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
-&kp TILDE   &tog QT          &trans          &trans           &trans           &trans             &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
-&tog KPD    &trans           &trans          &trans           &trans           &trans             &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
-&trans      &trans           &trans          &trans           &trans           &trans             &none      &trans           &trans           &kp INSERT  &kp PSCRN  &kp F12           &trans
-&none       &trans           &trans          &trans           &trans           &trans             &none      &eng_han         &trans           &trans      &trans     &trans
+&kp GRAVE   &kp F1           &kp F2          &kp F3           &kp F4           &kp F5        &none      &kp F6           &kp F7           &kp F8      &kp F9     &kp F10           &kp F11
+&kp TILDE   &tog QT          &trans          &trans           &trans           &trans        &none      &kp PG_UP        &kp HOME         &kp UP      &kp END    &kp MINUS         &kp EQUAL
+&tog KPD    &trans           &trans          &trans           &trans           &trans        &none      &kp PG_DN        &kp LEFT         &kp DOWN    &kp RIGHT  &kp LEFT_BRACKET  &kp RIGHT_BRACKET
+&trans      &trans           &trans          &trans           &trans           &trans        &none      &trans           &trans           &kp INSERT  &kp PSCRN  &kp F12           &trans
+&none       &trans           &trans          &trans           &trans           &trans        &none      &eng_han         &trans           &trans      &trans     &trans
             >;
 
             display-name = "Function";
@@ -247,10 +273,16 @@
 
         KeyPad_Layer { // Layer 4, Number Keypad Layer
             bindings = <
-&trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &kp KP_MULTIPLY  &kp KP_DIVIDE
+/* &trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &trans           &trans
 &trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
-&trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_DOT           &trans
-&trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &trans
+&trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MULTIPLY  &kp KP_DIVIDE
+&trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &kp KP_DOT
+&none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &trans     &mo ETC    &trans     &trans */
+
+&trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &trans           &trans
+&trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
+&trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MULTIPLY  &kp KP_DIVIDE
+&trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &kp KP_DOT
 &none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &trans     &mo ETC    &trans     &trans
             >;
 
