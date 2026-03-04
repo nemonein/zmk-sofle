@@ -3,9 +3,9 @@
 // 키감을 극복하느냐가 관건.
 // 자세한 사항은 Obsidian 'Hardware/ZMK 한영(韓英) 전환 방식' 을 읽어봐.
 
-
-#define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
+// 아래도 마우스 관련 설정.
+// #define ZMK_POINTING_DEFAULT_MOVE_VAL 1200  // 600
+// #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 
 // Layer 이름 정의
 #define DV 0    // Dvorak Layer
@@ -141,7 +141,7 @@
 
         // QMK lm 명령 구현. (이게 기본 지원이 안되냐..?)
         // https://v0-3-branch.zmk.dev/docs/keymaps/behaviors/macros#layer-activation--more
-        // 쓰기는 하겠지만, 코드를 이해하진 못하겠네.
+        // 쓰기는 하겠지만, 코드를 이해하진 못하겠네. --> 이제 이해된다. Obsidian, 아래 항목을 봐.
         // 사용: %lm QT LCTRL
       lm: layer_modifier {
           compatible = "zmk,behavior-macro-two-param";
@@ -247,11 +247,17 @@
 
         KeyPad_Layer { // Layer 4, Number Keypad Layer
             bindings = <
-&trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &trans           &trans
+/* &trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &trans           &trans
 &trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
 &trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MULTIPLY  &kp KP_DIVIDE
 &trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &kp KP_DOT
-&none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &trans     &mo ETC    &trans     &trans           &trans
+&none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &trans     &mo ETC    &trans     &trans */
+
+&trans  &trans       &trans        &trans           &trans         &trans     &none    &trans      &trans     &trans     &trans     &kp KP_MULTIPLY  &kp KP_DIVIDE
+&trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
+&trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_DOT       &trans
+&trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &trans
+&none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &trans     &mo ETC    &trans     &trans
             >;
 
             display-name = "Keypad";
