@@ -318,9 +318,9 @@ layers:
   - {t: '$$mdi:transfer$$', type: trans}
   - {t: '$$mdi:transfer$$', type: trans}
   - Function
-  - '&SPC'
+  - SPC
   - {t: '$$mdi:minus-circle-outline$$', type: none}
-  - '&SPC'
+  - SPC
   - ETC
   - {t: '$$mdi:keyboard-return$$', type: enter}
   - {t: '$$mdi:transfer$$', type: trans}
