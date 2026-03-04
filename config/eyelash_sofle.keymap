@@ -34,11 +34,11 @@ Error: Process completed with exit code 1.
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 25   // 10
 
 // Layer 이름 정의
-#define DV 0    // Dvorak Layer
-#define QT 1    // Qwerty Layer
-#define FN 2    // Function Layer
-#define ETC 3    // ETC Layer
-#define KPD 4    // Keypad Layer
+#define DV  0    // Dvorak Layer
+#define QT  1    // Qwerty Layer
+#define KPD 2    // Keypad Layer
+#define FN  3    // Function Layer
+#define ETC 4    // ETC Layer
 
 #include <input/processors.dtsi>
 #include <zephyr/dt-bindings/input/input-event-codes.h>
@@ -208,7 +208,7 @@ Error: Process completed with exit code 1.
       eng_han: english_hangul_change { // 한글에서 영문으로.
           compatible = "zmk,behavior-macro";
           #binding-cells = <0>;
-          tap-ms = <10>; // 키를 연달아 보낼 땐 tap-ms 가 꼭 있어야 하는 듯.. 없으면 오류발생.
+          tap-ms = <10>; // macro 에선 tap-ms 가 꼭 있어야 하는 듯.. 없으면 오류발생.
           bindings = <&to QT>, <&kp LANG1>;
       };
 
@@ -288,7 +288,8 @@ Error: Process completed with exit code 1.
 &trans  &trans       &kp COMMA     &kp KP_DOT       &trans         &trans     &none    &kp KP_NUM  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_PLUS      &kp KP_MINUS
 &trans  &kp KP_PLUS  &kp KP_MINUS  &kp KP_MULTIPLY  &kp KP_DIVIDE  &trans     &none    &trans      &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_MULTIPLY  &kp KP_DIVIDE
 &trans  &trans       &trans        &kp K_CALC       &trans         &trans     &none    &kp KP_N0   &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_EQUAL     &kp KP_DOT
-&none   &trans       &trans        &trans           &mo FN         &kp SPC    &none    &kp SPC     &mo ETC    &kp ENTER  &trans     &kp DEL
+// &none   &trans       &trans        &trans           &mo FN         &kp SPC    &none    &kp SPC     &mo ETC    &kp ENTER  &trans     &kp DEL
+&none   &trans       &trans        &trans           &mo FN         &trans     &none    &trans      &mo ETC    &kp ENTER  &trans     &kp DEL
             >;
 
             display-name = "Keypad";
